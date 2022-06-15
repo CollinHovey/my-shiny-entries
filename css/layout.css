@@ -1,0 +1,29 @@
+div.carousel {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+header {
+  margin-bottom: 40px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.entry {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.search-bar-row {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 923px) {
+  div.carousel {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
