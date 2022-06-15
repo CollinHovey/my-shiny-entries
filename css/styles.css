@@ -181,6 +181,23 @@ div.pokemon-image {
   margin-bottom: 2.5rem;
 }
 
+.carousel-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+span.main-text {
+  line-height: 2rem;
+}
+
+.carousel-name {
+  margin-bottom: 3rem;
+}
+
 @media screen and (max-width: 923px) {
   .favorites-button,
   .new-catch-button,
