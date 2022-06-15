@@ -97,11 +97,12 @@ function search(event) {
     }
   }
   for (var y = 0; y < data.library.length; y++) {
-    var pokemonCompare = data.library[y].pokemon.slice(0, event.target.value.length);
-    if (searchCompare !== pokemonCompare) {
-      $allEntries[y].setAttribute('class', 'hidden entry entry-' + y);
-    } else {
+    var pokemonCompare = data.library[y].pokemon.slice(0, event.target.value.length).toLowerCase();
+    var nicknameCompare = data.library[y].nickname.slice(0, event.target.value.length).toLowerCase();
+    if (searchCompare === pokemonCompare || nicknameCompare === searchCompare) {
       $allEntries[y].setAttribute('class', 'entry entry-' + y);
+    } else {
+      $allEntries[y].setAttribute('class', 'hidden entry entry-' + y);
     }
   }
 }
