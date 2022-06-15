@@ -198,6 +198,47 @@ span.main-text {
   margin-bottom: 3rem;
 }
 
+form.new-catch-form {
+  display: flex;
+  background-color: #76c8e1;
+  height: 20rem;
+  border: 0.5rem solid #043949;
+}
+
+.new-catch-label {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #043949;
+}
+
+.new-catch-input {
+  font-size: 2rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #d9d9d9;
+}
+
+.new-catch-input:focus {
+  outline: 2px solid #043949;
+}
+
+.new-catch-modal-button {
+  font-size: 2rem;
+  border-radius: 1rem;
+  border: none;
+  padding: 1rem;
+  background-color: #043949;
+  color: #76c8e1;
+}
+
+.new-catch-modal-button:hover {
+  color: white;
+  cursor: pointer;
+  padding: 1.2rem;
+}
+
 @media screen and (max-width: 923px) {
   .favorites-button,
   .new-catch-button,
