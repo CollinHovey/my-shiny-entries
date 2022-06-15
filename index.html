@@ -19,7 +19,7 @@
     </div>
   </header>
   <main>
-    <div data-view="carousel" class="carousel hidden">
+    <div data-view="carousel" class="carousel">
       <div class="left-button">
         <i class="fa-solid fa-angle-left fa-10x"></i>
       </div>
@@ -43,34 +43,27 @@
       </div>
     </div>
     <div data-view="new-catch" class="new-catch hidden">
+      <form class="new-catch-form">
+        <div class="column-one-third new-catch-labels">
+          <span class="new-catch-label">POKEMON</span>
+          <span class="new-catch-label">NICKNAME</span>
+          <span class="new-catch-label">ENCOUNTERS</span>
+        </div>
+        <div class="column-one-third input-column">
+          <input id="new-catch-pokemon" class="new-catch-input new-catch-pokemon" required placeholder="Pokemon">
+          <input id="new-catch-catch" class="new-catch-input new-catch-nickname" placeholder="NickName">
+          <input id="new-catch-encounters" class="new-catch-input new-catch-encounters" required placeholder="Encounters">
+        </div>
+        <div class="column-one-third">
+          <button class="new-catch-modal-button new-catch-cancel">CANCEL</button>
+          <button class="new-catch-modal-button new-catch-save">SAVE</button>
+        </div>
+      </form>
     </div>
-    <div data-view="library" class="library">
+    <div data-view="library" class="library hidden">
       <div class="search-bar-row">
         <input class="search-bar" placeholder="SEARCH">
         <!-- <i class="fa-solid fa-magnifying-glass fa-4x"></i></input> -->
-      </div>
-      <div class="entry entry-0">
-        <img class="entry-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" alt="pikachu">
-        <div class="entry-name">
-          <h1 class="entry-header">Pikachu</h1>
-          <h1 class="entry-secondary">Bolt</h1>
-        </div>
-        <div class="entry-encounter">
-          <h1 class="entry-header">Encounters</h1>
-          <h1 class="entry-secondary">564</h1>
-        </div>
-      </div>
-      <div class="entry entry-1">
-        <img class="entry-image" src="images/charizard.png"
-          alt="charizard">
-        <div class="entry-name">
-          <h1 class="entry-header">Charizard</h1>
-          <h1 class="entry-secondary">Charmlizard</h1>
-        </div>
-        <div class="entry-encounter">
-          <h1 class="entry-header">Encounters</h1>
-          <h1 class="entry-secondary">2323</h1>
-        </div>
       </div>
     </div>
   </main>
