@@ -9,6 +9,7 @@ div.header-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  border-bottom: 0.2rem solid #043949;
 }
 
 .favorites-button,
@@ -17,8 +18,8 @@ div.header-container {
   color: #76c8e1;
   background-color: #043949;
   border: none;
-  font-size: 40px;
-  padding: 2%;
+  font-size: 2.8rem;
+  padding: 1rem;
 }
 
 .favorites-button {
@@ -38,13 +39,12 @@ div.header-container {
 .new-catch-button:hover,
 .library-button:hover {
   cursor: pointer;
-  height: 120px;
+  height: 6.5rem;
   color: white;
 }
 
 div.carousel {
   display: flex;
-  width: 80%;
   background-color: #d9d9d9;
   align-items: center;
   justify-content: space-between;
@@ -64,7 +64,7 @@ div.pokemon-info {
 }
 
 img.favorite-image {
-  height: 300px;
+  height: 18.75rem;
   flex-basis: 50%;
 }
 
@@ -80,8 +80,8 @@ img.favorite-image {
   flex-basis: 15%;
   background-color: #76c8e1;
   height: fit-content;
-  padding-top: 110px;
-  padding-bottom: 110px;
+  padding-top: 6.875rem;
+  padding-bottom: 6.875rem;
 }
 
 .left-button {
@@ -105,8 +105,8 @@ div.pokemon-image {
 
 .left-button:hover,
 .right-button:hover {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 3rem;
+  padding-right: 3rem;
   cursor: pointer;
   color: white;
 }
@@ -124,12 +124,12 @@ div.pokemon-image {
   border: 10px solid #043949;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .entry-image {
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 12.5rem;
+  max-width: 12.5rem;
   flex-basis: 30%;
 }
 
@@ -154,11 +154,11 @@ div.pokemon-image {
 }
 
 .search-bar {
-  font-size: 60px;
+  font-size: 3.75rem;
   border-radius: 40px;
-  padding: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0.3rem;
+  padding-left: 1.25px;
+  padding-right: 1.25px;
   border: none;
   background-color: #76c8e1;
   color: #043949;
@@ -166,7 +166,7 @@ div.pokemon-image {
 }
 
 .search-bar:focus {
-  outline: 2px solid #043949;
+  outline: 0.125rem solid #043949;
 }
 
 .search-bar::placeholder {
@@ -178,26 +178,26 @@ div.pokemon-image {
 }
 
 .search-bar-row {
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 
 @media screen and (max-width: 923px) {
   .favorites-button,
   .new-catch-button,
   .library-button {
-    font-size: 30px;
-    padding: 3%;
+    font-size: 1.87rem;
+    padding: 1rem;
   }
 
   div.header-container {
-    height: 100px;
+    height: 6.25rem;
   }
 
   .favorites-button:hover,
   .new-catch-button:hover,
   .library-button:hover {
     cursor: pointer;
-    height: 90px;
+    height: 5.625rem;
     color: white;
   }
 
@@ -210,19 +210,19 @@ div.pokemon-image {
   }
 
   img.favorite-image {
-    height: 220px;
+    height: 13.75rem;
   }
 
   .pokemon-info {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 
   .search-bar {
-    font-size: 30px;
+    font-size: 1.875rem;
     border-radius: 40px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0.3rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .entry {
@@ -231,16 +231,16 @@ div.pokemon-image {
   }
 
   .entry-image {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 12.5rem;
+    max-width: 12.5rem;
     flex-basis: 30%;
   }
 
   .entry-name {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 
   .entry-encounter {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 }
