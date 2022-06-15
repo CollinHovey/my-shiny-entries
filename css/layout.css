@@ -1,0 +1,29 @@
+div.carousel {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+header {
+  margin-bottom: 2.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.entry {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.search-bar-row {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 923px) {
+  div.carousel {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

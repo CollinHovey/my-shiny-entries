@@ -4,15 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
+  <header class="header">
+    <div class="header-container">
+      <button class="favorites-button">Favorites</button>
+      <button class="new-catch-button">New Catch</button>
+      <button class="library-button">Library</button>
+    </div>
   </header>
   <main>
+    <div data-view="carousel" class="carousel hidden">
+      <div class="left-button">
+        <i class="fa-solid fa-angle-left fa-10x"></i>
+      </div>
+      <div class="favorite-pokemon">
+        <div class="pokemon-image">
+          <img class="favorite-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" alt="pikachu">
+        </div>
+        <div class="pokemon-info">
+          <h1 class="carousel-info">
+            <span class="main-text carousel-pokemon">Pikachu</span>
+            <span class="secondary-text carousel-name">Bolt</span>
+          </h1>
+          <h1 class="carousel-info">
+            <span class="main-text">Encounters</span>
+            <span class="secondary-text carousel-encounters">5890</span>
+          </h1>
+        </div>
+      </div>
+      <div class="right-button">
+        <i class="fa-solid fa-angle-right  fa-10x"></i>
+      </div>
+    </div>
+    <div data-view="new-catch" class="new-catch hidden">
+    </div>
+    <div data-view="library" class="library">
+      <div class="search-bar-row">
+        <input class="search-bar" placeholder="SEARCH">
+        <!-- <i class="fa-solid fa-magnifying-glass fa-4x"></i></input> -->
+      </div>
+      <div class="entry entry-0">
+        <img class="entry-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" alt="pikachu">
+        <div class="entry-name">
+          <h1 class="entry-header">Pikachu</h1>
+          <h1 class="entry-secondary">Bolt</h1>
+        </div>
+        <div class="entry-encounter">
+          <h1 class="entry-header">Encounters</h1>
+          <h1 class="entry-secondary">564</h1>
+        </div>
+      </div>
+      <div class="entry entry-1">
+        <img class="entry-image" src="images/charizard.png"
+          alt="charizard">
+        <div class="entry-name">
+          <h1 class="entry-header">Charizard</h1>
+          <h1 class="entry-secondary">Charmlizard</h1>
+        </div>
+        <div class="entry-encounter">
+          <h1 class="entry-header">Encounters</h1>
+          <h1 class="entry-secondary">2323</h1>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
