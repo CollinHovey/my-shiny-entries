@@ -105,8 +105,6 @@ div.pokemon-image {
 
 .left-button:hover,
 .right-button:hover {
-  padding-left: 3rem;
-  padding-right: 3rem;
   cursor: pointer;
   color: white;
 }
@@ -122,9 +120,12 @@ div.pokemon-image {
 .entry {
   background-color: #d9d9d9;
   border: 10px solid #043949;
+  margin-bottom: 1.25rem;
+}
+
+.entry-display {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 1.25rem;
 }
 
 .entry-image {
@@ -205,7 +206,21 @@ form.new-catch-form {
   border: 0.5rem solid #043949;
 }
 
+form.edit-catch-form {
+  display: flex;
+  background-color: #76c8e1;
+  height: 20rem;
+  border: 0.5rem solid #043949;
+}
+
 .new-catch-label {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #043949;
+}
+
+.edit-catch-label {
   font-size: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -220,8 +235,12 @@ form.new-catch-form {
   background-color: #d9d9d9;
 }
 
-.new-catch-input:focus {
-  outline: 2px solid #043949;
+.edit-catch-input {
+  font-size: 2rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #d9d9d9;
 }
 
 .new-catch-modal-button {
@@ -233,10 +252,37 @@ form.new-catch-form {
   color: #76c8e1;
 }
 
+.edit-catch-modal-button {
+  font-size: 2rem;
+  border-radius: 1rem;
+  border: none;
+  padding: 1rem;
+  background-color: #043949;
+  color: #76c8e1;
+}
+
 .new-catch-modal-button:hover {
   color: white;
   cursor: pointer;
-  padding: 1.2rem;
+}
+
+.edit-catch-modal-button:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.entry-edit-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.edit-entry-button {
+  color: #043949;
+}
+
+.edit-entry-button:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 923px) {
@@ -256,6 +302,20 @@ form.new-catch-form {
   .library-button:hover {
     cursor: pointer;
     height: 5.625rem;
+    color: white;
+  }
+
+  .left-button,
+  .right-button {
+    padding-top: 8em;
+    padding-bottom: 8rem;
+  }
+
+  .left-button:hover .fa-angle-left {
+    color: white;
+  }
+
+  .right-button:hover .fa-angle-right {
     color: white;
   }
 
@@ -300,5 +360,77 @@ form.new-catch-form {
 
   .entry-encounter {
     font-size: 0.625rem;
+  }
+
+  form.new-catch-form {
+    height: 100%;
+    flex-wrap: wrap;
+  }
+
+  .new-catch-label {
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .new-catch-input {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+  }
+
+  form.edit-catch-form {
+    height: 100%;
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .edit-catch-label {
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .edit-catch-input {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+  }
+
+  .column-one-third {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .button-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  .new-catch-modal-button {
+    flex-basis: calc(100% / 3);
+    font-size: 1rem;
+    width: 8rem;
+  }
+
+  div.new-catch-labels {
+    justify-content: space-evenly;
+  }
+
+  .edit-catch-modal-button {
+    flex-basis: calc(100% / 3);
+    font-size: 1rem;
+    width: 8rem;
+  }
+
+  div.edit-catch-labels {
+    justify-content: space-evenly;
   }
 }
