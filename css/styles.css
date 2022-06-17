@@ -58,6 +58,13 @@ div.favorite-pokemon {
   align-items: center;
 }
 
+div.no-favorites {
+  flex-basis: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 div.pokemon-info {
   flex-basis: 50%;
   text-align: center;
@@ -273,8 +280,17 @@ form.edit-catch-form {
 
 .entry-edit-div {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-bottom: 2rem;
+}
+
+i.fa-heart {
+  color: #043949;
+}
+
+i.fa-heart:hover {
+  cursor: pointer;
+  text-shadow: #043949;
 }
 
 .edit-entry-button {
@@ -432,5 +448,9 @@ form.edit-catch-form {
 
   div.edit-catch-labels {
     justify-content: space-evenly;
+  }
+
+  .no-favorites-text {
+    text-align: center;
   }
 }
