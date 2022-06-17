@@ -442,6 +442,10 @@ function deleteEntry(event) {
   $editCatchView.setAttribute('class', 'edit-catch hidden');
   $deleteEntryModal.setAttribute('class', 'delete-entry-modal hidden');
   $libraryView.setAttribute('class', 'library');
+  if (favorites.length === 0) {
+    $favoritesPokemonDiv.setAttribute('class', 'favorite-pokemon hidden');
+    $noFavoritesDiv.setAttribute('class', 'no-favorites-div');
+  }
 }
 
 $deleteConfirmButton.addEventListener('click', deleteEntry);
