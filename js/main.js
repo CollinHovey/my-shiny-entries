@@ -27,6 +27,10 @@ var $saveEditCatchButton = document.querySelector('button.edit-catch-save');
 var $editCatchPokemon = document.querySelector('.edit-catch-pokemon');
 var $editCatchNickName = document.querySelector('.edit-catch-nickname');
 var $editCatchEncounters = document.querySelector('.edit-catch-encounters');
+var $deleteEntryModal = document.querySelector('.delete-entry-modal');
+var $deleteButton = document.querySelector('.edit-catch-delete');
+var $deleteCancelButton = document.querySelector('.cancel-modal');
+var $deleteConfirmButton = document.querySelector('.confirm-modal');
 
 function switchFavorites(event) {
   clearInterval(stopCarousel);
@@ -385,3 +389,58 @@ function addHeart(event) {
     }
   }
 }
+
+function openDeleteModal(event) {
+  event.preventDefault();
+  $deleteEntryModal.setAttribute('class', 'delete-entry-modal');
+}
+
+function closeModal(event) {
+  event.preventDefault();
+  $deleteEntryModal.setAttribute('class', 'delete-entry-modal hidden');
+}
+
+$deleteButton.addEventListener('click', openDeleteModal);
+
+$deleteCancelButton.addEventListener('click', closeModal);
+
+function deleteEntry(event) {
+  event.preventDefault();
+  for (var x = 0; x < favorites.length; x++) {
+    if (favorites[x].entryId === editEntryNumber) {
+      favorites.splice(x, 1);
+    }
+  }
+  for (var y = 0; y < data.library.length; y++) {
+    if (data.library[y].entryId === editEntryNumber) {
+      data.library.splice(y, 1);
+    }
+  }
+  var $allEntries = document.querySelectorAll('.entry');
+  $allEntries[editEntryNumber].remove();
+  $allEntries = document.querySelectorAll('.entry');
+
+  for (var z = 0; z < favorites.length; z++) {
+    if (favorites[z].entryId > editEntryNumber) {
+      favorites[z].entryId -= 1;
+    }
+  }
+  for (var a = editEntryNumber; a < data.library.length; a++) {
+    data.library[a].entryId -= 1;
+  }
+  for (var b = editEntryNumber; b < $allEntries.length; b++) {
+    $allEntries[b].setAttribute('class', 'entry entry-' + b);
+    $allEntries[b].children[1].children[0].setAttribute('class', 'fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-' + b);
+    if (data.library[b].isFavorite) {
+      $allEntries[b].children[1].children[1].setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + b);
+    } else {
+      $allEntries[b].children[1].children[1].setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + b);
+    }
+  }
+  data.nextEntryId -= 1;
+  $editCatchView.setAttribute('class', 'edit-catch hidden');
+  $deleteEntryModal.setAttribute('class', 'delete-entry-modal hidden');
+  $libraryView.setAttribute('class', 'library');
+}
+
+$deleteConfirmButton.addEventListener('click', deleteEntry);
