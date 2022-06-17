@@ -36,12 +36,23 @@ header {
   padding: 2rem;
 }
 
+.edit-catch-form {
+  margin-left: 4rem;
+  margin-right: 4rem;
+  padding: 2rem;
+}
+
 .input-column {
   width: 10rem;
 }
 
 @media screen and (max-width: 923px) {
   div.carousel {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .new-catch-form {
     margin-left: 0;
     margin-right: 0;
   }

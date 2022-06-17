@@ -19,6 +19,12 @@ var $saveNewCatchButton = document.querySelector('button.new-catch-save');
 var $newCatchPokemon = document.querySelector('.new-catch-pokemon');
 var $newCatchNickName = document.querySelector('.new-catch-nickname');
 var $newCatchEncounters = document.querySelector('.new-catch-encounters');
+var $editCatchView = document.querySelector('.edit-catch');
+var $cancelEditCatchButton = document.querySelector('button.edit-catch-cancel');
+var $saveEditCatchButton = document.querySelector('button.edit-catch-save');
+var $editCatchPokemon = document.querySelector('.edit-catch-pokemon');
+var $editCatchNickName = document.querySelector('.edit-catch-nickname');
+var $editCatchEncounters = document.querySelector('.edit-catch-encounters');
 
 function switchFavorites(event) {
   clearInterval(stopCarousel);
@@ -26,6 +32,7 @@ function switchFavorites(event) {
   $libraryView.setAttribute('class', 'library hidden');
   $favoritesView.setAttribute('class', 'carousel');
   $newCatchView.setAttribute('class', 'new-catch hidden');
+  $editCatchView.setAttribute('class', 'edit-catch hidden');
 }
 
 function switchLibrary(event) {
@@ -33,6 +40,7 @@ function switchLibrary(event) {
   $libraryView.setAttribute('class', 'library');
   $favoritesView.setAttribute('class', 'carousel hidden');
   $newCatchView.setAttribute('class', 'new-catch hidden');
+  $editCatchView.setAttribute('class', 'edit-catch hidden');
 }
 
 function switchNewCatch(event) {
@@ -40,6 +48,12 @@ function switchNewCatch(event) {
   $libraryView.setAttribute('class', 'library hidden');
   $favoritesView.setAttribute('class', 'carousel hidden');
   $newCatchView.setAttribute('class', 'new-catch');
+  $editCatchView.setAttribute('class', 'edit-catch hidden');
+}
+
+function switchEditCatch(event) {
+  $libraryView.setAttribute('class', 'library hidden');
+  $editCatchView.setAttribute('class', 'edit-catch');
 }
 
 $newCatchButton.addEventListener('click', switchNewCatch);
@@ -123,14 +137,17 @@ function cancelNewCatch() {
 function newLibraryEntry(entry) {
   var $containerDiv = document.createElement('div');
   $containerDiv.setAttribute('class', 'entry entry-' + entry.entryId);
+  var $displayDiv = document.createElement('div');
+  $displayDiv.setAttribute('class', 'entry-display');
+  $containerDiv.appendChild($displayDiv);
   var $image = document.createElement('img');
   $image.setAttribute('class', 'entry-image');
   $image.setAttribute('src', entry.picture);
   $image.setAttribute('alt', entry.pokemon);
-  $containerDiv.appendChild($image);
+  $displayDiv.appendChild($image);
   var $entryNameDiv = document.createElement('div');
   $entryNameDiv.setAttribute('class', 'entry-name');
-  $containerDiv.appendChild($entryNameDiv);
+  $displayDiv.appendChild($entryNameDiv);
   var $entryPokemon = document.createElement('h1');
   $entryPokemon.setAttribute('class', 'entry-header');
   $entryPokemon.textContent = entry.pokemon;
@@ -141,7 +158,7 @@ function newLibraryEntry(entry) {
   $entryNameDiv.appendChild($entryNickName);
   var $entryEncounterDiv = document.createElement('div');
   $entryEncounterDiv.setAttribute('class', 'entry-encounter');
-  $containerDiv.appendChild($entryEncounterDiv);
+  $displayDiv.appendChild($entryEncounterDiv);
   var $entryEncounter = document.createElement('h1');
   $entryEncounter.setAttribute('class', 'entry-header');
   $entryEncounter.textContent = 'Encounters';
@@ -150,6 +167,13 @@ function newLibraryEntry(entry) {
   $entryEncounters.setAttribute('class', 'entry-secondary');
   $entryEncounters.textContent = entry.encounters;
   $entryEncounterDiv.appendChild($entryEncounters);
+  var $entryEditDiv = document.createElement('div');
+  $entryEditDiv.setAttribute('class', 'entry-edit-div');
+  $containerDiv.appendChild($entryEditDiv);
+  var $editEntryButton = document.createElement('i');
+  $editEntryButton.setAttribute('class', 'fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-' + entry.entryId);
+  $entryEditDiv.appendChild($editEntryButton);
+  $editEntryButton.addEventListener('click', openEditEntry);
   return $containerDiv;
 }
 
@@ -190,3 +214,53 @@ function loadLibrary() {
 }
 
 window.addEventListener('DOMContentLoaded', loadLibrary);
+
+var editEntryNumber = 0;
+
+function openEditEntry(event) {
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-') + x) {
+      editEntryNumber = x;
+      $editCatchPokemon.value = data.library[x].pokemon;
+      $editCatchNickName.value = data.library[x].nickname;
+      $editCatchEncounters.value = data.library[x].encounters;
+      switchEditCatch();
+    }
+  }
+}
+
+function cancelEditCatch(event) {
+  event.preventDefault();
+  $libraryView.setAttribute('class', 'library');
+  $editCatchView.setAttribute('class', 'edit-catch hidden');
+}
+
+$cancelEditCatchButton.addEventListener('click', cancelEditCatch);
+
+function saveEditCatch(event) {
+  event.preventDefault();
+  data.library[editEntryNumber].pokemon = $editCatchPokemon.value;
+  data.library[editEntryNumber].nickname = $editCatchNickName.value;
+  data.library[editEntryNumber].encounters = $editCatchEncounters.value;
+  var $entryDiv = document.querySelector('.entry-' + editEntryNumber);
+  function request(name) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      data.library[editEntryNumber].picture = xhr.response.sprites.front_shiny;
+      $entryDiv.children[0].children[0].setAttribute('src', xhr.response.sprites.front_shiny);
+    });
+    xhr.send();
+  }
+  if ($entryDiv.children[0].children[1].children[0].textContent !== $editCatchPokemon.value) {
+    request($editCatchPokemon.value.toLowerCase());
+  }
+  $entryDiv.children[0].children[1].children[0].textContent = $editCatchPokemon.value;
+  $entryDiv.children[0].children[1].children[1].textContent = $editCatchNickName.value;
+  $entryDiv.children[0].children[2].children[1].textContent = $editCatchEncounters.value;
+  $libraryView.setAttribute('class', 'library');
+  $editCatchView.setAttribute('class', 'edit-catch hidden');
+}
+
+$saveEditCatchButton.addEventListener('click', saveEditCatch);
