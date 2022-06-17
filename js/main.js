@@ -5,6 +5,8 @@ var $libraryView = document.querySelector('.library');
 var $favoritesButton = document.querySelector('.favorites-button');
 var $newCatchButton = document.querySelector('.new-catch-button');
 var $libraryButton = document.querySelector('.library-button');
+var $noFavoritesDiv = document.querySelector('div.no-favorites-div');
+var $favoritesPokemonDiv = document.querySelector('div.favorite-pokemon');
 var $carouselImage = document.querySelector('.favorite-image');
 var $carouselPokemon = document.querySelector('.carousel-pokemon');
 var $carouselNickName = document.querySelector('.carousel-name');
@@ -62,21 +64,23 @@ $favoritesButton.addEventListener('click', switchFavorites);
 
 $libraryButton.addEventListener('click', switchLibrary);
 
-if (favorites.length !== 0) {
+if (favorites.length > 1) {
   var stopCarousel = setInterval(carouselSwitch, 5000);
 }
 
 var carouselCounter = 0;
 
 function carouselSwitch() {
-  carouselCounter += 1;
-  if (carouselCounter > (favorites.length - 1)) {
-    carouselCounter = 0;
+  if (favorites.length > 1) {
+    carouselCounter += 1;
+    if (carouselCounter > (favorites.length - 1)) {
+      carouselCounter = 0;
+    }
+    $carouselImage.setAttribute('src', favorites[carouselCounter].picture);
+    $carouselPokemon.textContent = favorites[carouselCounter].pokemon;
+    $carouselNickName.textContent = favorites[carouselCounter].nickname;
+    $carouselEncounters.textContent = favorites[carouselCounter].encounters;
   }
-  $carouselImage.setAttribute('src', favorites[carouselCounter].picture);
-  $carouselPokemon.textContent = favorites[carouselCounter].pokemon;
-  $carouselNickName.textContent = favorites[carouselCounter].nickname;
-  $carouselEncounters.textContent = favorites[carouselCounter].encounters;
 }
 
 function carouselLeft() {
@@ -174,6 +178,20 @@ function newLibraryEntry(entry) {
   $editEntryButton.setAttribute('class', 'fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-' + entry.entryId);
   $entryEditDiv.appendChild($editEntryButton);
   $editEntryButton.addEventListener('click', openEditEntry);
+  var $favoritesEntryButton = document.createElement('i');
+  if (entry.isFavorite) {
+    $favoritesEntryButton.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + entry.entryId);
+    $favoritesEntryButton.addEventListener('click', removeFavoriteEntry);
+    $favoritesEntryButton.addEventListener('mouseenter', removeHeart);
+    $favoritesEntryButton.addEventListener('mouseout', addHeart);
+  } else {
+    $favoritesEntryButton.setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + entry.entryId);
+    $favoritesEntryButton.addEventListener('click', favoriteEntry);
+    $favoritesEntryButton.addEventListener('mouseenter', fullHeart);
+    $favoritesEntryButton.addEventListener('mouseout', emptyHeart);
+  }
+  $entryEditDiv.appendChild($favoritesEntryButton);
+
   return $containerDiv;
 }
 
@@ -184,6 +202,7 @@ function saveNewCatch(event) {
   newShiny.nickname = $newCatchNickName.value;
   newShiny.encounters = parseInt($newCatchEncounters.value);
   newShiny.entryId = data.nextEntryId;
+  newShiny.isFavorite = false;
   data.nextEntryId += 1;
   function requestTest(name) {
     var xhr = new XMLHttpRequest();
@@ -206,6 +225,16 @@ $cancelNewCatchButton.addEventListener('click', cancelNewCatch);
 $saveNewCatchButton.addEventListener('click', saveNewCatch);
 
 function loadLibrary() {
+  if (favorites.length === 0) {
+    clearInterval(stopCarousel);
+  } else {
+    $carouselImage.setAttribute('src', favorites[carouselCounter].picture);
+    $carouselPokemon.textContent = favorites[carouselCounter].pokemon;
+    $carouselNickName.textContent = favorites[carouselCounter].nickname;
+    $carouselEncounters.textContent = favorites[carouselCounter].encounters;
+    $favoritesPokemonDiv.setAttribute('class', 'favorite-pokemon');
+    $noFavoritesDiv.setAttribute('class', 'no-favorites-div hidden');
+  }
   for (var x = 0; x < data.library.length; x++) {
     if (data.library.length !== 0) {
       $libraryView.appendChild(newLibraryEntry(data.library[x]));
@@ -264,3 +293,95 @@ function saveEditCatch(event) {
 }
 
 $saveEditCatchButton.addEventListener('click', saveEditCatch);
+
+function favoriteEntry(event) {
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x) || event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
+      var newFavPokemon = {};
+      newFavPokemon = data.library[x];
+      newFavPokemon.isFavorite = true;
+      favorites.push(newFavPokemon);
+      event.target.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + x);
+      event.target.removeEventListener('click', favoriteEntry);
+      event.target.removeEventListener('mouseenter', fullHeart);
+      event.target.removeEventListener('mouseout', emptyHeart);
+      event.target.addEventListener('click', removeFavoriteEntry);
+      event.target.addEventListener('mouseenter', removeHeart);
+      event.target.addEventListener('mouseout', addHeart);
+    }
+  }
+  if (favorites.length === 1) {
+    $favoritesPokemonDiv.setAttribute('class', 'favorite-pokemon');
+    $noFavoritesDiv.setAttribute('class', 'no-favorites-div hidden');
+    $carouselImage.setAttribute('src', favorites[0].picture);
+    $carouselPokemon.textContent = favorites[0].pokemon;
+    $carouselNickName.textContent = favorites[0].nickname;
+    $carouselEncounters.textContent = favorites[0].encounters;
+  }
+}
+
+function removeFavoriteEntry(event) {
+  var entryNumber = 0;
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x) || event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
+      entryNumber = x;
+    }
+  }
+  for (var y = 0; y < favorites.length; y++) {
+    if (data.library[entryNumber].entryId === favorites[y].entryId) {
+      favorites.splice(y, 1);
+    }
+  }
+  data.library[entryNumber].isFavorite = false;
+  event.target.setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + entryNumber);
+  event.target.removeEventListener('click', removeFavoriteEntry);
+  event.target.removeEventListener('mouseenter', removeHeart);
+  event.target.removeEventListener('mouseout', addHeart);
+  event.target.addEventListener('click', favoriteEntry);
+  event.target.addEventListener('mouseenter', fullHeart);
+  event.target.addEventListener('mouseout', emptyHeart);
+  if (favorites.length === 0) {
+    $favoritesPokemonDiv.setAttribute('class', 'favorite-pokemon hidden');
+    $noFavoritesDiv.setAttribute('class', 'no-favorites-div');
+  }
+  if (favorites.length === 1) {
+    $favoritesPokemonDiv.setAttribute('class', 'favorite-pokemon');
+    $noFavoritesDiv.setAttribute('class', 'no-favorites-div hidden');
+    $carouselImage.setAttribute('src', favorites[0].picture);
+    $carouselPokemon.textContent = favorites[0].pokemon;
+    $carouselNickName.textContent = favorites[0].nickname;
+    $carouselEncounters.textContent = favorites[0].encounters;
+  }
+}
+
+function fullHeart(event) {
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x)) {
+      event.target.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + x);
+    }
+  }
+}
+
+function emptyHeart(event) {
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
+      event.target.setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + x);
+    }
+  }
+}
+
+function removeHeart(event) {
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
+      event.target.setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + x);
+    }
+  }
+}
+
+function addHeart(event) {
+  for (var x = 0; x < data.library.length; x++) {
+    if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x)) {
+      event.target.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + x);
+    }
+  }
+}

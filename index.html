@@ -19,24 +19,27 @@
     </div>
   </header>
   <main>
-    <div data-view="carousel" class="carousel hidden">
+    <div data-view="carousel" class="carousel">
       <div class="left-button">
         <i class="fa-solid fa-angle-left fa-10x"></i>
       </div>
-      <div class="favorite-pokemon">
+      <div class="favorite-pokemon hidden">
         <div class="pokemon-image">
-          <img class="favorite-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" alt="pikachu">
+          <img class="favorite-image" src="" alt="">
         </div>
         <div class="pokemon-info">
           <h1 class="carousel-info">
-            <span class="main-text carousel-pokemon">Pikachu</span>
-            <span class="secondary-text carousel-name">Bolt</span>
+            <span class="main-text carousel-pokemon"></span>
+            <span class="secondary-text carousel-name"></span>
           </h1>
           <h1 class="carousel-info">
             <span class="main-text">Encounters</span>
-            <span class="secondary-text carousel-encounters">5890</span>
+            <span class="secondary-text carousel-encounters"></span>
           </h1>
         </div>
+      </div>
+      <div class="no-favorites-div">
+        <h1 class="no-favorites-text">You Have No Favorites Saved</h1>
       </div>
       <div class="right-button">
         <i class="fa-solid fa-angle-right  fa-10x"></i>
@@ -78,10 +81,9 @@
         </div>
       </form>
     </div>
-    <div data-view="library" class="library">
+    <div data-view="library" class="library hidden">
       <div class="search-bar-row">
         <input class="search-bar" placeholder="SEARCH">
-        <!-- <i class="fa-solid fa-magnifying-glass fa-4x"></i></input> -->
       </div>
     </div>
   </main>
