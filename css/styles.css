@@ -301,6 +301,48 @@ i.fa-heart:hover {
   cursor: pointer;
 }
 
+div.shadow {
+  background: black;
+  position: absolute;
+  opacity: 0.6;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+div.modal {
+  background-color: #76c8e1;
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+h1.modal-comment {
+  color: #043949;
+}
+
+.modal-button {
+  color: #76c8e1;
+  background-color: #043949;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 3rem;
+  padding: 1rem;
+}
+
+.modal-button:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.modal-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 923px) {
   .favorites-button,
   .new-catch-button,
@@ -452,5 +494,33 @@ i.fa-heart:hover {
 
   .no-favorites-text {
     text-align: center;
+  }
+
+  div.modal {
+    left: 0;
+  }
+
+  h1.modal-comment {
+    color: #043949;
+    font-size: 2rem;
+  }
+
+  .modal-button {
+    color: #76c8e1;
+    background-color: #043949;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  .modal-button:hover {
+    color: white;
+    cursor: pointer;
+  }
+
+  .modal-button-container {
+    display: flex;
+    justify-content: space-between;
   }
 }

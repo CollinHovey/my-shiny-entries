@@ -77,6 +77,7 @@
         </div>
         <div class="column-one-third button-column">
           <button class="edit-catch-modal-button edit-catch-cancel">CANCEL</button>
+          <button class="edit-catch-modal-button edit-catch-delete">DELETE</button>
           <button class="edit-catch-modal-button edit-catch-save">SAVE</button>
         </div>
       </form>
@@ -84,6 +85,16 @@
     <div data-view="library" class="library hidden">
       <div class="search-bar-row">
         <input class="search-bar" placeholder="SEARCH">
+      </div>
+    </div>
+    <div class="delete-entry-modal hidden">
+      <div class="shadow"></div>
+      <div class="modal">
+        <h1 class="modal-comment">Are You Sure You Want To Delete This Entry?</h1>
+        <div class="modal-button-container">
+          <button class="modal-button cancel-modal">Cancel</button>
+          <button class="modal-button confirm-modal">Confirm</button>
+        </div>
       </div>
     </div>
   </main>
