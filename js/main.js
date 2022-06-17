@@ -244,6 +244,7 @@ function loadLibrary() {
       $libraryView.appendChild(newLibraryEntry(data.library[x]));
     }
   }
+  $allEntries = document.querySelectorAll('.entry');
 }
 
 window.addEventListener('DOMContentLoaded', loadLibrary);
