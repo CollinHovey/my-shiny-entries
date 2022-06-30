@@ -68,8 +68,9 @@ $favoritesButton.addEventListener('click', switchFavorites);
 
 $libraryButton.addEventListener('click', switchLibrary);
 
+let stopCarousel;
 if (favorites.length > 1) {
-  var stopCarousel = setInterval(carouselSwitch, 5000);
+  stopCarousel = setInterval(carouselSwitch, 5000);
 }
 
 let carouselCounter = 0;
