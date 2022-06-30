@@ -1,30 +1,30 @@
 /* exported data */
 /* exported favorites */
-var data = {
+let data = {
   nextEntryId: 0,
   library: []
 };
 
-var favorites = [];
+let favorites = [];
 
 window.addEventListener('beforeunload', saveData);
 pullData();
 
 function saveData(event) {
-  var dataJSON = JSON.stringify(data);
+  const dataJSON = JSON.stringify(data);
   localStorage.setItem('dataEntries', dataJSON);
-  var favoritesJSON = JSON.stringify(favorites);
+  const favoritesJSON = JSON.stringify(favorites);
   localStorage.setItem('favoritesEntries', favoritesJSON);
 }
 
 function pullData(event) {
-  var savedDataJSON = localStorage.getItem('dataEntries');
-  var savedData = JSON.parse(savedDataJSON);
+  const savedDataJSON = localStorage.getItem('dataEntries');
+  const savedData = JSON.parse(savedDataJSON);
   if (savedData !== null) {
     data = savedData;
   }
-  var savedFavoritesJSON = localStorage.getItem('favoritesEntries');
-  var savedFavorites = JSON.parse(savedFavoritesJSON);
+  const savedFavoritesJSON = localStorage.getItem('favoritesEntries');
+  const savedFavorites = JSON.parse(savedFavoritesJSON);
   if (savedFavorites !== null) {
     favorites = savedFavorites;
   }
