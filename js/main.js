@@ -1,36 +1,36 @@
 /* global data, favorites */
-var $favoritesView = document.querySelector('.carousel');
-var $newCatchView = document.querySelector('.new-catch');
-var $libraryView = document.querySelector('.library');
-var $favoritesButton = document.querySelector('.favorites-button');
-var $newCatchButton = document.querySelector('.new-catch-button');
-var $libraryButton = document.querySelector('.library-button');
-var $noFavoritesDiv = document.querySelector('div.no-favorites-div');
-var $favoritesPokemonDiv = document.querySelector('div.favorite-pokemon');
-var $carouselImage = document.querySelector('.favorite-image');
-var $carouselPokemon = document.querySelector('.carousel-pokemon');
-var $carouselNickName = document.querySelector('.carousel-name');
-var $carouselEncounters = document.querySelector('.carousel-encounters');
-var $carouselLeftButton = document.querySelector('div.left-button');
-var $carouselRightButton = document.querySelector('div.right-button');
-var $searchBar = document.querySelector('.search-bar');
-var $allEntries = document.querySelectorAll('.entry');
-var $newCatchForm = document.querySelector('.new-catch-form');
-var $cancelNewCatchButton = document.querySelector('button.new-catch-cancel');
-var $saveNewCatchButton = document.querySelector('button.new-catch-save');
-var $newCatchPokemon = document.querySelector('.new-catch-pokemon');
-var $newCatchNickName = document.querySelector('.new-catch-nickname');
-var $newCatchEncounters = document.querySelector('.new-catch-encounters');
-var $editCatchView = document.querySelector('.edit-catch');
-var $cancelEditCatchButton = document.querySelector('button.edit-catch-cancel');
-var $saveEditCatchButton = document.querySelector('button.edit-catch-save');
-var $editCatchPokemon = document.querySelector('.edit-catch-pokemon');
-var $editCatchNickName = document.querySelector('.edit-catch-nickname');
-var $editCatchEncounters = document.querySelector('.edit-catch-encounters');
-var $deleteEntryModal = document.querySelector('.delete-entry-modal');
-var $deleteButton = document.querySelector('.edit-catch-delete');
-var $deleteCancelButton = document.querySelector('.cancel-modal');
-var $deleteConfirmButton = document.querySelector('.confirm-modal');
+const $favoritesView = document.querySelector('.carousel');
+const $newCatchView = document.querySelector('.new-catch');
+const $libraryView = document.querySelector('.library');
+const $favoritesButton = document.querySelector('.favorites-button');
+const $newCatchButton = document.querySelector('.new-catch-button');
+const $libraryButton = document.querySelector('.library-button');
+const $noFavoritesDiv = document.querySelector('div.no-favorites-div');
+const $favoritesPokemonDiv = document.querySelector('div.favorite-pokemon');
+const $carouselImage = document.querySelector('.favorite-image');
+const $carouselPokemon = document.querySelector('.carousel-pokemon');
+const $carouselNickName = document.querySelector('.carousel-name');
+const $carouselEncounters = document.querySelector('.carousel-encounters');
+const $carouselLeftButton = document.querySelector('div.left-button');
+const $carouselRightButton = document.querySelector('div.right-button');
+const $searchBar = document.querySelector('.search-bar');
+let $allEntries = document.querySelectorAll('.entry');
+const $newCatchForm = document.querySelector('.new-catch-form');
+const $cancelNewCatchButton = document.querySelector('button.new-catch-cancel');
+const $saveNewCatchButton = document.querySelector('button.new-catch-save');
+const $newCatchPokemon = document.querySelector('.new-catch-pokemon');
+const $newCatchNickName = document.querySelector('.new-catch-nickname');
+const $newCatchEncounters = document.querySelector('.new-catch-encounters');
+const $editCatchView = document.querySelector('.edit-catch');
+const $cancelEditCatchButton = document.querySelector('button.edit-catch-cancel');
+const $saveEditCatchButton = document.querySelector('button.edit-catch-save');
+const $editCatchPokemon = document.querySelector('.edit-catch-pokemon');
+const $editCatchNickName = document.querySelector('.edit-catch-nickname');
+const $editCatchEncounters = document.querySelector('.edit-catch-encounters');
+const $deleteEntryModal = document.querySelector('.delete-entry-modal');
+const $deleteButton = document.querySelector('.edit-catch-delete');
+const $deleteCancelButton = document.querySelector('.cancel-modal');
+const $deleteConfirmButton = document.querySelector('.confirm-modal');
 
 function switchFavorites(event) {
   clearInterval(stopCarousel);
@@ -72,7 +72,7 @@ if (favorites.length > 1) {
   var stopCarousel = setInterval(carouselSwitch, 5000);
 }
 
-var carouselCounter = 0;
+let carouselCounter = 0;
 
 function carouselSwitch() {
   if (favorites.length > 1) {
@@ -117,15 +117,15 @@ $carouselLeftButton.addEventListener('click', carouselLeft);
 $carouselRightButton.addEventListener('click', carouselRight);
 
 function search(event) {
-  var searchCompare = event.target.value.toLowerCase();
+  const searchCompare = event.target.value.toLowerCase();
   if (searchCompare === '') {
-    for (var x = 0; x < data.library.length; x++) {
+    for (let x = 0; x < data.library.length; x++) {
       $allEntries[x].setAttribute('class', 'entry entry-' + x);
     }
   }
-  for (var y = 0; y < data.library.length; y++) {
-    var pokemonCompare = data.library[y].pokemon.slice(0, event.target.value.length).toLowerCase();
-    var nicknameCompare = data.library[y].nickname.slice(0, event.target.value.length).toLowerCase();
+  for (let y = 0; y < data.library.length; y++) {
+    const pokemonCompare = data.library[y].pokemon.slice(0, event.target.value.length).toLowerCase();
+    const nicknameCompare = data.library[y].nickname.slice(0, event.target.value.length).toLowerCase();
     if (searchCompare === pokemonCompare || nicknameCompare === searchCompare) {
       $allEntries[y].setAttribute('class', 'entry entry-' + y);
     } else {
@@ -143,46 +143,46 @@ function cancelNewCatch() {
 }
 
 function newLibraryEntry(entry) {
-  var $containerDiv = document.createElement('div');
+  const $containerDiv = document.createElement('div');
   $containerDiv.setAttribute('class', 'entry entry-' + entry.entryId);
-  var $displayDiv = document.createElement('div');
+  const $displayDiv = document.createElement('div');
   $displayDiv.setAttribute('class', 'entry-display');
   $containerDiv.appendChild($displayDiv);
-  var $image = document.createElement('img');
+  const $image = document.createElement('img');
   $image.setAttribute('class', 'entry-image');
   $image.setAttribute('src', entry.picture);
   $image.setAttribute('alt', entry.pokemon);
   $displayDiv.appendChild($image);
-  var $entryNameDiv = document.createElement('div');
+  const $entryNameDiv = document.createElement('div');
   $entryNameDiv.setAttribute('class', 'entry-name');
   $displayDiv.appendChild($entryNameDiv);
-  var $entryPokemon = document.createElement('h1');
+  const $entryPokemon = document.createElement('h1');
   $entryPokemon.setAttribute('class', 'entry-header');
   $entryPokemon.textContent = entry.pokemon;
   $entryNameDiv.appendChild($entryPokemon);
-  var $entryNickName = document.createElement('h1');
+  const $entryNickName = document.createElement('h1');
   $entryNickName.setAttribute('class', 'entry-secondary');
   $entryNickName.textContent = entry.nickname;
   $entryNameDiv.appendChild($entryNickName);
-  var $entryEncounterDiv = document.createElement('div');
+  const $entryEncounterDiv = document.createElement('div');
   $entryEncounterDiv.setAttribute('class', 'entry-encounter');
   $displayDiv.appendChild($entryEncounterDiv);
-  var $entryEncounter = document.createElement('h1');
+  const $entryEncounter = document.createElement('h1');
   $entryEncounter.setAttribute('class', 'entry-header');
   $entryEncounter.textContent = 'Encounters';
   $entryEncounterDiv.appendChild($entryEncounter);
-  var $entryEncounters = document.createElement('h1');
+  const $entryEncounters = document.createElement('h1');
   $entryEncounters.setAttribute('class', 'entry-secondary');
   $entryEncounters.textContent = entry.encounters;
   $entryEncounterDiv.appendChild($entryEncounters);
-  var $entryEditDiv = document.createElement('div');
+  const $entryEditDiv = document.createElement('div');
   $entryEditDiv.setAttribute('class', 'entry-edit-div');
   $containerDiv.appendChild($entryEditDiv);
-  var $editEntryButton = document.createElement('i');
+  const $editEntryButton = document.createElement('i');
   $editEntryButton.setAttribute('class', 'fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-' + entry.entryId);
   $entryEditDiv.appendChild($editEntryButton);
   $editEntryButton.addEventListener('click', openEditEntry);
-  var $favoritesEntryButton = document.createElement('i');
+  const $favoritesEntryButton = document.createElement('i');
   if (entry.isFavorite) {
     $favoritesEntryButton.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + entry.entryId);
     $favoritesEntryButton.addEventListener('click', removeFavoriteEntry);
@@ -201,7 +201,7 @@ function newLibraryEntry(entry) {
 
 function saveNewCatch(event) {
   event.preventDefault();
-  var newShiny = {};
+  const newShiny = {};
   newShiny.pokemon = $newCatchPokemon.value;
   newShiny.nickname = $newCatchNickName.value;
   newShiny.encounters = parseInt($newCatchEncounters.value);
@@ -209,7 +209,7 @@ function saveNewCatch(event) {
   newShiny.isFavorite = false;
   data.nextEntryId += 1;
   function requestTest(name) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
@@ -239,7 +239,7 @@ function loadLibrary() {
     $favoritesPokemonDiv.setAttribute('class', 'favorite-pokemon');
     $noFavoritesDiv.setAttribute('class', 'no-favorites-div hidden');
   }
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (data.library.length !== 0) {
       $libraryView.appendChild(newLibraryEntry(data.library[x]));
     }
@@ -249,10 +249,10 @@ function loadLibrary() {
 
 window.addEventListener('DOMContentLoaded', loadLibrary);
 
-var editEntryNumber = 0;
+let editEntryNumber = 0;
 
 function openEditEntry(event) {
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-') + x) {
       editEntryNumber = x;
       $editCatchPokemon.value = data.library[x].pokemon;
@@ -276,9 +276,9 @@ function saveEditCatch(event) {
   data.library[editEntryNumber].pokemon = $editCatchPokemon.value;
   data.library[editEntryNumber].nickname = $editCatchNickName.value;
   data.library[editEntryNumber].encounters = $editCatchEncounters.value;
-  var $entryDiv = document.querySelector('.entry-' + editEntryNumber);
+  const $entryDiv = document.querySelector('.entry-' + editEntryNumber);
   function request(name) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + name);
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
@@ -300,9 +300,9 @@ function saveEditCatch(event) {
 $saveEditCatchButton.addEventListener('click', saveEditCatch);
 
 function favoriteEntry(event) {
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x) || event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
-      var newFavPokemon = {};
+      let newFavPokemon = {};
       newFavPokemon = data.library[x];
       newFavPokemon.isFavorite = true;
       favorites.push(newFavPokemon);
@@ -326,13 +326,13 @@ function favoriteEntry(event) {
 }
 
 function removeFavoriteEntry(event) {
-  var entryNumber = 0;
-  for (var x = 0; x < data.library.length; x++) {
+  let entryNumber = 0;
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x) || event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
       entryNumber = x;
     }
   }
-  for (var y = 0; y < favorites.length; y++) {
+  for (let y = 0; y < favorites.length; y++) {
     if (data.library[entryNumber].entryId === favorites[y].entryId) {
       favorites.splice(y, 1);
     }
@@ -360,7 +360,7 @@ function removeFavoriteEntry(event) {
 }
 
 function fullHeart(event) {
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x)) {
       event.target.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + x);
     }
@@ -368,7 +368,7 @@ function fullHeart(event) {
 }
 
 function emptyHeart(event) {
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
       event.target.setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + x);
     }
@@ -376,7 +376,7 @@ function emptyHeart(event) {
 }
 
 function removeHeart(event) {
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-solid fa-heart fa-3x favorite-' + x)) {
       event.target.setAttribute('class', 'fa-regular fa-heart fa-3x favorite-' + x);
     }
@@ -384,7 +384,7 @@ function removeHeart(event) {
 }
 
 function addHeart(event) {
-  for (var x = 0; x < data.library.length; x++) {
+  for (let x = 0; x < data.library.length; x++) {
     if (event.target.getAttribute('class') === ('fa-regular fa-heart fa-3x favorite-' + x)) {
       event.target.setAttribute('class', 'fa-solid fa-heart fa-3x favorite-' + x);
     }
@@ -407,29 +407,29 @@ $deleteCancelButton.addEventListener('click', closeModal);
 
 function deleteEntry(event) {
   event.preventDefault();
-  for (var x = 0; x < favorites.length; x++) {
+  for (let x = 0; x < favorites.length; x++) {
     if (favorites[x].entryId === editEntryNumber) {
       favorites.splice(x, 1);
     }
   }
-  for (var y = 0; y < data.library.length; y++) {
+  for (let y = 0; y < data.library.length; y++) {
     if (data.library[y].entryId === editEntryNumber) {
       data.library.splice(y, 1);
     }
   }
-  var $allEntries = document.querySelectorAll('.entry');
+  let $allEntries = document.querySelectorAll('.entry');
   $allEntries[editEntryNumber].remove();
   $allEntries = document.querySelectorAll('.entry');
 
-  for (var z = 0; z < favorites.length; z++) {
+  for (let z = 0; z < favorites.length; z++) {
     if (favorites[z].entryId > editEntryNumber) {
       favorites[z].entryId -= 1;
     }
   }
-  for (var a = editEntryNumber; a < data.library.length; a++) {
+  for (let a = editEntryNumber; a < data.library.length; a++) {
     data.library[a].entryId -= 1;
   }
-  for (var b = editEntryNumber; b < $allEntries.length; b++) {
+  for (let b = editEntryNumber; b < $allEntries.length; b++) {
     $allEntries[b].setAttribute('class', 'entry entry-' + b);
     $allEntries[b].children[1].children[0].setAttribute('class', 'fa-solid fa-pencil fa-3x edit-entry-button edit-entry-button-' + b);
     if (data.library[b].isFavorite) {
