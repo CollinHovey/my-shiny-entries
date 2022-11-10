@@ -8,6 +8,7 @@ let data = {
 let favorites = [];
 
 window.addEventListener('beforeunload', saveData);
+window.addEventListener('pagehide', saveData);
 pullData();
 
 function saveData(event) {
