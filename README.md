@@ -37,3 +37,7 @@ Try it yourself at https://collinhovey.github.io/ajax-project/
 - None, runs on just HTML, CSS, and JavaScript
 
 # Getting Started
+
+1. Clone Repository
+
+2. Open index.html on a live server
