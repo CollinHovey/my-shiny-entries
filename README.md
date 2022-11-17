@@ -11,6 +11,7 @@ I love shiny hunting and i couldn't find an app that I liked to store my shiny h
 - HTML
 - CSS
 - JavaScript
+- https://pokeapi.co/ (Pokémon API)
 
 # Live Demo
 
