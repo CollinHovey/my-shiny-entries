@@ -26,7 +26,8 @@ Try it yourself at https://collinhovey.github.io/ajax-project/
 
 # Preview
 
--ADD GIFS
+-![chrome_lTlt89GU5E](https://user-images.githubusercontent.com/102557430/202417537-d8e722fa-d121-4d5e-987b-f5c9223b2933.gif)
+-![chrome_iK1V3C8FBD](https://user-images.githubusercontent.com/102557430/202417609-aaeb912a-970a-4a4c-9494-f366bc41c261.gif)
 
 # Future Features
 
